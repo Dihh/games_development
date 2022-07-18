@@ -1,0 +1,158 @@
+[gd_scene load_steps=17 format=2]
+
+[sub_resource type="PlaneMesh" id=21]
+
+[sub_resource type="VisualShaderNodeInput" id=16]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeColorConstant" id=17]
+constant = Color( 0, 0, 0, 1 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=18]
+constant = Color( 0.108044, 0.612305, 0.0687647, 1 )
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=19]
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=15]
+
+[sub_resource type="VisualShader" id=20]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:3
+	vec3 n_out3p0 = vec3(0.000000, 0.000000, 0.000000);
+	float n_out3p1 = 1.000000;
+
+// Color:4
+	vec3 n_out4p0 = vec3(0.108044, 0.612305, 0.068765);
+	float n_out4p1 = 1.000000;
+
+// VectorMix:5
+	vec3 n_in5p2 = vec3(0.50000, 0.50000, 0.50000);
+	vec3 n_out5p0 = mix(n_out3p0, n_out4p0, n_in5p2);
+
+// Output:0
+	ALBEDO = n_out5p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -320, 124 )
+nodes/fragment/2/node = SubResource( 16 )
+nodes/fragment/2/position = Vector2( -220, 260 )
+nodes/fragment/3/node = SubResource( 17 )
+nodes/fragment/3/position = Vector2( 40, 120 )
+nodes/fragment/4/node = SubResource( 18 )
+nodes/fragment/4/position = Vector2( 160, 120 )
+nodes/fragment/5/node = SubResource( 19 )
+nodes/fragment/5/position = Vector2( 160, 220 )
+nodes/fragment/6/node = SubResource( 15 )
+nodes/fragment/6/position = Vector2( -60, 220 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 5, 0, 4, 0, 5, 1, 5, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 20 )
+
+[sub_resource type="PlaneMesh" id=28]
+
+[sub_resource type="VisualShaderNodeInput" id=29]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=23]
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=24]
+
+[sub_resource type="VisualShaderNodeColorConstant" id=25]
+constant = Color( 0.15956, 0.568359, 0.161157, 1 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=26]
+constant = Color( 0, 0, 0, 1 )
+
+[sub_resource type="VisualShader" id=27]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:8
+	vec3 n_out8p0 = vec3(0.000000, 0.000000, 0.000000);
+	float n_out8p1 = 1.000000;
+
+// Color:7
+	vec3 n_out7p0 = vec3(0.159560, 0.568359, 0.161157);
+	float n_out7p1 = 1.000000;
+
+// Input:2
+	vec3 n_out2p0 = COLOR.rgb;
+
+// VectorDecompose:3
+	float n_out3p0 = n_out2p0.x;
+	float n_out3p1 = n_out2p0.y;
+	float n_out3p2 = n_out2p0.z;
+
+// VectorMix:6
+	vec3 n_out6p0 = mix(n_out8p0, n_out7p0, vec3(n_out3p0));
+
+// Output:0
+	ALBEDO = n_out6p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -320, 124 )
+nodes/fragment/0/position = Vector2( 580, 160 )
+nodes/fragment/2/node = SubResource( 29 )
+nodes/fragment/2/position = Vector2( -140, 240 )
+nodes/fragment/3/node = SubResource( 23 )
+nodes/fragment/3/position = Vector2( 20, 220 )
+nodes/fragment/6/node = SubResource( 24 )
+nodes/fragment/6/position = Vector2( 380, 200 )
+nodes/fragment/7/node = SubResource( 25 )
+nodes/fragment/7/position = Vector2( 220, 160 )
+nodes/fragment/8/node = SubResource( 26 )
+nodes/fragment/8/position = Vector2( 220, 80 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 3, 0, 8, 0, 6, 0, 7, 0, 6, 1, 3, 0, 6, 2, 6, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=30]
+shader = SubResource( 27 )
+
+[node name="MeshInstance" type="Spatial"]
+transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0 )
+
+[node name="dark" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visible = false
+mesh = SubResource( 21 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 22 )
+
+[node name="light" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visible = false
+mesh = SubResource( 28 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 30 )

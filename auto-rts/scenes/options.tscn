@@ -1,0 +1,146 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/options_circle.gd" type="Script" id=1]
+[ext_resource path="res://scripts/option.gd" type="Script" id=2]
+[ext_resource path="res://scripts/option_square.gd" type="Script" id=3]
+[ext_resource path="res://scripts/options.gd" type="Script" id=4]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="CylinderShape" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("option_bottom/Viewport2")
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("option_top/Viewport2")
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("option_left/Viewport2")
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("option_right/Viewport2")
+
+[node name="options" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.50033, -1.09293e-07 )
+script = ExtResource( 4 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 300, 300 )
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Node2D" type="Node2D" parent="Viewport"]
+script = ExtResource( 1 )
+
+[node name="Options_circle" type="Sprite3D" parent="."]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0 )
+flip_v = true
+texture = SubResource( 1 )
+
+[node name="optons_area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="optons_area"]
+transform = Transform( 3, 0, 0, 0, -4.37114e-09, 3, 0, -0.1, -1.31134e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="option_bottom" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="option_bottom"]
+
+[node name="CollisionShape" type="CollisionShape" parent="option_bottom/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Viewport2" type="Viewport" parent="option_bottom"]
+size = Vector2( 300, 300 )
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Node2D" type="Node2D" parent="option_bottom/Viewport2"]
+script = ExtResource( 3 )
+
+[node name="option_square" type="Sprite3D" parent="option_bottom"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0 )
+flip_v = true
+texture = SubResource( 4 )
+
+[node name="option_top" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="option_top"]
+
+[node name="CollisionShape" type="CollisionShape" parent="option_top/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Viewport2" type="Viewport" parent="option_top"]
+size = Vector2( 300, 300 )
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Node2D" type="Node2D" parent="option_top/Viewport2"]
+script = ExtResource( 3 )
+
+[node name="option_square" type="Sprite3D" parent="option_top"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0 )
+flip_v = true
+texture = SubResource( 5 )
+
+[node name="option_left" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="option_left"]
+
+[node name="CollisionShape" type="CollisionShape" parent="option_left/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Viewport2" type="Viewport" parent="option_left"]
+size = Vector2( 300, 300 )
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Node2D" type="Node2D" parent="option_left/Viewport2"]
+script = ExtResource( 3 )
+
+[node name="option_square" type="Sprite3D" parent="option_left"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0 )
+flip_v = true
+texture = SubResource( 6 )
+
+[node name="option_right" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="option_right"]
+
+[node name="CollisionShape" type="CollisionShape" parent="option_right/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Viewport2" type="Viewport" parent="option_right"]
+size = Vector2( 300, 300 )
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Node2D" type="Node2D" parent="option_right/Viewport2"]
+script = ExtResource( 3 )
+
+[node name="option_square" type="Sprite3D" parent="option_right"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0 )
+flip_v = true
+texture = SubResource( 7 )
+
+[connection signal="input_event" from="optons_area" to="." method="_on_optons_area_input_event"]
+[connection signal="input_event" from="option_bottom/Area" to="option_bottom" method="_on_Area_input_event"]
+[connection signal="input_event" from="option_top/Area" to="option_top" method="_on_Area_input_event"]
+[connection signal="input_event" from="option_left/Area" to="option_left" method="_on_Area_input_event"]
+[connection signal="input_event" from="option_right/Area" to="option_right" method="_on_Area_input_event"]
